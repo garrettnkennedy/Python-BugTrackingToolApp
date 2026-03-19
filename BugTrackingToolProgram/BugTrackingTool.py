@@ -24,9 +24,12 @@ def main():
     while userSelection.lower() != "exit":
         userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"change status\" to change the contents of a bug report.\n")
         if userSelection.lower() == "add":
-            pass#since I cant type #temp without having an error saying: Expected indented block, I have to use pass instead as a placeholder.
+            title = input("type the title of the bug report.")
+            description = input("enter the description of the bug")
+            severity = input("enter the severity of the bug")
+            status = input("enter the status of the bug report")
         elif userSelection.lower() == "view bug":
-            pass
+            pass#since I cant type #temp without having an error saying: Expected indented block, I have to use pass instead as a placeholder.
         elif userSelection.lower() == "change status":
             pass
 
