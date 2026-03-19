@@ -19,5 +19,15 @@ def main():
     description = "none"
     severity = "none"
     status = "none"
+    userSelection = "none"
+    print("Hello this is a Bug Tracking Tool Simulation.")
+    while userSelection.lower() != "exit":
+        userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"change status\" to change the contents of a bug report.\n")
+        if userSelection.lower() == "add":
+            pass#since I cant type #temp without having an error saying: Expected indented block, I have to use pass instead as a placeholder.
+        elif userSelection.lower() == "view bug":
+            pass
+        elif userSelection.lower() == "change status":
+            pass
 
 main()
