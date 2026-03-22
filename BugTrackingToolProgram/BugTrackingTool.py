@@ -29,19 +29,22 @@ def get_bug_info():
         "description": get_valid_input("Enter description: "),
         "severity": get_valid_input("Enter severity: "),
         "status": get_valid_input("Enter status: ")
-    }#since get_valid_input is called for each variable
+    }
 
 def main():
     title = "none"#variables cannot be empty so I have a placeholder.
     description = "none"
     severity = "none"
     status = "none"
+    bugReports = []
     userSelection = "none"
     print("Hello this is a Bug Tracking Tool Simulation.")
     while userSelection.lower() != "exit":
         userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"change status\" to change the contents of a bug report.\n")
         if userSelection.lower() == "add":
-            title, description, severity, status = get_bug_info()
+            bug = get_bug_info()
+            bugReports.append(bug)
+            print("bug report added")
         elif userSelection.lower() == "view bug":
             pass#since I cant type #temp without having an error saying: Expected indented block, I have to use pass instead as a placeholder.
         elif userSelection.lower() == "change status":
