@@ -38,6 +38,7 @@ def main():
     status = "none"
     bugReports = []
     userSelection = "none"
+    viewBugSelection = "none"
     print("Hello this is a Bug Tracking Tool Simulation.")
     while userSelection.lower() != "exit":
         userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"change status\" to change the contents of a bug report.\n")
@@ -46,8 +47,14 @@ def main():
             bugReports.append(bug)
             print("bug report added")
         elif userSelection.lower() == "view bug":
-            pass#since I cant type #temp without having an error saying: Expected indented block, I have to use pass instead as a placeholder.
+            if len(bugReports) == 0:
+                print("You havent entered any bug reports.")
+            else:
+                for i, bug in enumerate(bugReports, start=1):#start=1 makes the i value start at 1 instead of 0
+                    print(f"{i}. {bug['title']}")
+                viewBugSelection = input("Please select a bug report to display.")
+                
         elif userSelection.lower() == "change status":
-            pass
+            pass#since I cant type #temp without having an error saying: Expected indented block, I have to use pass instead as a placeholder.
 
 main()
