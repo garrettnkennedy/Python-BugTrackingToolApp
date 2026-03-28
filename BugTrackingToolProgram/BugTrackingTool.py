@@ -40,6 +40,13 @@ def get_bug_info(bugReports):
         "status": get_valid_input("Enter status: ")
         }
 
+def display_bug_titles(bugReports):
+    if len(bugReports) == 0:
+        print("You have not entered any bug reports.")
+    else:
+        for i, bug in enumerate(bugReports, start=1):
+            print(f"{i}. {bug['title']}")
+
 def main():
     title = "none"#variables cannot be empty so I have a placeholder.
     description = "none"
@@ -59,8 +66,7 @@ def main():
             if len(bugReports) == 0:
                 print("You havent entered any bug reports.")
             else:
-                for i, bug in enumerate(bugReports, start=1):#start=1 makes the i value start at 1 instead of 0
-                    print(f"{i}. {bug['title']}")
+                display_bug_titles(bugReports)
                 viewBugSelection = input("Please select a bug report to display.")
                 matching_bug = next((bug for bug in bugReports if bug["title"] == viewBugSelection), None)#None is the default value if nothing is found.
                 if matching_bug:
@@ -72,6 +78,6 @@ def main():
                     print("There is no bug report with that title")
                 
         elif userSelection.lower() == "change status":
-            pass#since I cant type #temp without having an error saying: Expected indented block, I have to use pass instead as a placeholder.
+            display_bug_titles(bugReports)
 
 main()
