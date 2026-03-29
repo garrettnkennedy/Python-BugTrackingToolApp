@@ -53,6 +53,9 @@ def has_bug_reports(bugReports):
         return False#if it returns False this function/method will not continue and run return True
     return True
 
+def find_bug_by_title(bugReports, title):
+    return next((bug for bug in bugReports if bug["title"] == title), None) #None is the default value if nothing is found.
+
 def main():
     title = "none"#variables cannot be empty so I have a placeholder.
     description = "none"
@@ -72,7 +75,7 @@ def main():
             if has_bug_reports(bugReports):
                 display_bug_titles(bugReports)
                 viewBugSelection = input("Please select a bug report to display.")
-                matching_bug = next((bug for bug in bugReports if bug["title"] == viewBugSelection), None)#None is the default value if nothing is found.
+                matching_bug = find_bug_by_title(bugReports, viewBugSelection)
                 if matching_bug:
                     print(f"Bug Report: {matching_bug["title"]}")
                     print(matching_bug["description"])
@@ -85,4 +88,10 @@ def main():
             if has_bug_reports(bugReports):
                 display_bug_titles(bugReports)
 
+                title_of_bug_report_to_change = input("Enter the title of the bug report whose status you want to change.")
+
+                matching_bug = find_bug_by_title(bugReports, title_of_bug_report_to_change)
+                new_status = get_valid_input("Enter new status: ")
+                matching_bug["status"] = new_status
+                    
 main()
