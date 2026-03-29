@@ -47,6 +47,12 @@ def display_bug_titles(bugReports):
         for i, bug in enumerate(bugReports, start=1):
             print(f"{i}. {bug['title']}")
 
+def has_bug_reports(bugReports):
+    if len(bugReports) == 0:
+        print("You have not entered any bug reports.")
+        return False#if it returns False this function/method will not continue and run return True
+    return True
+
 def main():
     title = "none"#variables cannot be empty so I have a placeholder.
     description = "none"
@@ -63,9 +69,7 @@ def main():
             bugReports.append(bug)
             print("bug report added")
         elif userSelection.lower() == "view bug":
-            if len(bugReports) == 0:
-                print("You havent entered any bug reports.")
-            else:
+            if has_bug_reports(bugReports):
                 display_bug_titles(bugReports)
                 viewBugSelection = input("Please select a bug report to display.")
                 matching_bug = next((bug for bug in bugReports if bug["title"] == viewBugSelection), None)#None is the default value if nothing is found.
@@ -78,6 +82,7 @@ def main():
                     print("There is no bug report with that title")
                 
         elif userSelection.lower() == "change status":
-            display_bug_titles(bugReports)
+            if has_bug_reports(bugReports):
+                display_bug_titles(bugReports)
 
 main()
