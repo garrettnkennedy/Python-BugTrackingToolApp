@@ -1,3 +1,4 @@
+import json
 # Here are my instructions for this project, so I dont have to flip through documents to check.
 # What It Does:
 #•	Allows a user to add bug reports with fields like: title, description, severity, status.
@@ -13,6 +14,17 @@
 #2.	Store bugs in a list or dictionary.
 #3.	Implement commands: Add bug, view bug, change status.
 #4.	Optional: Save to CSV or JSON for persistence.
+def save_to_json(bugReports):
+    with open("bugReports.json", "w") as file:
+        json.dump(bugReports, file, indent=4)
+
+def load_from_json():
+    try:
+        with open("bugReports.json", "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+
 def make_sure_titles_are_not_identical(title, bugReports):
     while any(bug["title"] == title for bug in bugReports):
         print("A bug with this title already exists.")
@@ -61,15 +73,16 @@ def main():
     description = "none"
     severity = "none"
     status = "none"
-    bugReports = []
+    bugReports = load_from_json()
     userSelection = "none"
     viewBugSelection = "none"
     print("Hello this is a Bug Tracking Tool Simulation.")
     while userSelection.lower() != "exit":
-        userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"change status\" to change the contents of a bug report.\n")
+        userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"change status\" to change the contents of a bug report. Type exit to end the program.\n")
         if userSelection.lower() == "add":
             bug = get_bug_info(bugReports)
             bugReports.append(bug)
+            save_to_json(bugReports)
             print("bug report added")
         elif userSelection.lower() == "view bug":
             if has_bug_reports(bugReports):
@@ -90,8 +103,11 @@ def main():
 
                 title_of_bug_report_to_change = input("Enter the title of the bug report whose status you want to change.")
 
-                matching_bug = find_bug_by_title(bugReports, title_of_bug_report_to_change)
+                matching_bug = find_bug_by_title(bugReports, title_of_bug_report_to_change)#matching_bug points to the same bug report in bugReports, so changes to it can change the status of the bug report in bugReports
                 new_status = get_valid_input("Enter new status: ")
                 matching_bug["status"] = new_status
+                save_to_json(bugReports)
+                print("Status changed successfully")
+    
                     
 main()
