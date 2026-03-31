@@ -15,13 +15,13 @@ import json
 #3.	Implement commands: Add bug, view bug, change status.
 #4.	Optional: Save to CSV or JSON for persistence.
 def save_to_json(bugReports):
-    with open("bugReports.json", "w") as file:
-        json.dump(bugReports, file, indent=4)
+    with open("bugReports.json", "w") as file:#w means write mode which creates the file if it doesnt exist and overwrites it if it does, this line of code also closes the file automatically when done 
+        json.dump(bugReports, file, indent=4)#this code saves the python data in bugReports to a JSON file and indent=4 is just for formatting to make it look better
 
 def load_from_json():
     try:
-        with open("bugReports.json", "r") as file:
-            return json.load(file)
+        with open("bugReports.json", "r") as file:#r means read mode
+            return json.load(file)#the difference between the load here and the .dump above is the direction, .dump is from python to the file and .load is from the file to python.
     except FileNotFoundError:
         return []
 
