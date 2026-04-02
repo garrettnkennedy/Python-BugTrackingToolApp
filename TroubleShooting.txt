@@ -1,0 +1,4 @@
+I use tools such as documentation and AI assistance to better understand syntax errors or logic issues.
+
+This program acts as a refresher for me.
+
