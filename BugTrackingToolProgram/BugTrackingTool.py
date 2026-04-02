@@ -1,4 +1,5 @@
 import json
+import os
 # Here are my instructions for this project, so I dont have to flip through documents to check.
 # What It Does:
 #•	Allows a user to add bug reports with fields like: title, description, severity, status.
@@ -73,12 +74,22 @@ def main():
     description = "none"
     severity = "none"
     status = "none"
+    if os.path.exists("bugReports.json"):
+        bugReports = load_from_json()
+        reset = input("bugReports.json already exists, you can type \"reset\" to clear all previously existing data or press Enter to continue: ")
+        
+        if reset.lower() == "reset":
+            bugReports = []
+            save_to_json(bugReports)
+    else:
+        bugReports = []#if the bugReports.json exists and the user did not enter reset then it skils both the if reset == "reset": and the else: allowing the bugReports = load_from_json() below to run.
+
     bugReports = load_from_json()
     userSelection = "none"
     viewBugSelection = "none"
     print("Hello this is a Bug Tracking Tool Simulation.")
     while userSelection.lower() != "exit":
-        userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"change status\" to change the contents of a bug report. Type exit to end the program.\n")
+        userSelection = input("Type \"Add\" to add a bug report, type \"View Bug\" to view the current bug reports, and type \"Change Status\" to change the contents of a bug report. Type \"Exit\" to end the program.\n")
         if userSelection.lower() == "add":
             bug = get_bug_info(bugReports)
             bugReports.append(bug)
@@ -108,6 +119,5 @@ def main():
                 matching_bug["status"] = new_status
                 save_to_json(bugReports)
                 print("Status changed successfully")
-    
                     
 main()
