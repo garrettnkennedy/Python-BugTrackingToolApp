@@ -1,4 +1,24 @@
-I use tools such as documentation and AI assistance to better understand syntax errors or logic issues.
+I use tools such as documentation and AI assistance to better understand syntax errors or logic issues. 
+This TroubleShooting.txt shows my process, errors I received and what I did to fix it.
 
 This program acts as a refresher for me.
 
+when running python BugTrackingTool I got the error: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.       python was not installed and I thought visual studio code could run python code as I remember making a python program in it years ago, so I had to install it to run the visual studio code version of python.
+
+I ran the program and it displayed the print message asking me to type Add, View Bug or change status, I noticed the capitalization was different and even though .Lower makes it so capitalization doesn’t matter I still changed it to make it look nicer(also Exit didn’t have quotations when the other text did to differentiate it from the surrounding text, so I added them.)
+
+typing View Bug and Change Status both gave the correct message of "You have not entered any bug reports.". I typed Add and gave initial input "Test" to all fields but then realized that might be confusing, then I realized that since the program saves data between runs and there is no option to delete the data it would be there forever if I did not add a code that would over-write the JSON, so I added code that asks if the user wants to reset the file, and then does so if they type "reset"
+
+I re-tested whether "View Bug" and "Change Status" would correctly give you a message saying you have not entered a bug report when you reset the bugReports.json to be empty, they did so successfully.
+
+I then added a bug report with the test data: "Title1, Description1, Severity1, Not Fixed", it successfully logged it and when I hit "View Bug" it displayed it once I hit the correct input. I also tested what would happen if I entered the wrong title in "View Bug" and it correctly gave me the correct output message. It also did not break the "View Bug" option when I entered it again after entering the wrong title.
+
+I entered "Change Status" and changed the status of the bug report to "Completed", View Bug correctly displays that it has changed. I then added a new bug report via "Add" and it works correctly. I then added a third bug report and tried to enter a title that already exists, it gave me the correct output and then made me re-enter the title, I named it Title3.
+
+In the Title3 bug report I added numbers to the description, severity and status fields but I realized that in a real bug tracking tool people would not enter only numbers so I created code elif invalidInputChecker.isdigit(): that would then print a warning message if the user entered only numbers.
+
+while not resetting allows the numbered bug report to remain without any errors, once confirming that I re-ran the program and this time reset the bugReports.json file.
+
+Typing Exit without adding any bug reports creates a empty bugReports.json file but still asks you if you want to reset so I created a if bugReports: statement that runs if bugReports is not empty and does not run if it is empty and moved the code responsible for asking you if you want to reset the bugReports.json file into it.
+
+Everything is working.
