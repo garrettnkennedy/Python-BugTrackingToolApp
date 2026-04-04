@@ -39,6 +39,8 @@ def get_valid_input(message):
 
         if invalidInputChecker == "":
             print("Input cannot be empty or just spaces.")
+        elif invalidInputChecker.isdigit():
+            print("Input cannot be only numbers.")
         else:
             return invalidInputChecker
         
@@ -76,15 +78,16 @@ def main():
     status = "none"
     if os.path.exists("bugReports.json"):
         bugReports = load_from_json()
-        reset = input("bugReports.json already exists, you can type \"reset\" to clear all previously existing data or press Enter to continue: ")
         
-        if reset.lower() == "reset":
-            bugReports = []
-            save_to_json(bugReports)
+        if bugReports: #is an alternative to len(bugReports) > 0 because if bugReports: is true if its not empty.
+            reset = input("bugReports.json already exists, you can type \"reset\" to clear all previously existing data or press Enter to continue: ")
+            
+            if reset.lower() == "reset":
+                bugReports = []
+                save_to_json(bugReports)
     else:
-        bugReports = []#if the bugReports.json exists and the user did not enter reset then it skils both the if reset == "reset": and the else: allowing the bugReports = load_from_json() below to run.
+        bugReports = []#if the bugReports.json exists and the user did not enter reset or if its empty then it skips both the if reset == "reset": and the else: allowing the code below to run.
 
-    bugReports = load_from_json()
     userSelection = "none"
     viewBugSelection = "none"
     print("Hello this is a Bug Tracking Tool Simulation.")
