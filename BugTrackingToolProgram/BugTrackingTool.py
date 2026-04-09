@@ -118,9 +118,12 @@ def main():
                 title_of_bug_report_to_change = input("Enter the title of the bug report whose status you want to change.")
 
                 matching_bug = find_bug_by_title(bugReports, title_of_bug_report_to_change)#matching_bug points to the same bug report in bugReports, so changes to it can change the status of the bug report in bugReports
-                new_status = get_valid_input("Enter new status: ")
-                matching_bug["status"] = new_status
-                save_to_json(bugReports)
-                print("Status changed successfully")
+                if matching_bug:
+                    new_status = get_valid_input("Enter new status: ")
+                    matching_bug["status"] = new_status
+                    save_to_json(bugReports)
+                    print("Status changed successfully")
+                else:
+                    print("There is no bug report with that title")
                     
 main()
