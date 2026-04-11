@@ -21,4 +21,4 @@ while not resetting allows the numbered bug report to remain without any errors,
 
 Typing Exit without adding any bug reports creates a empty bugReports.json file but still asks you if you want to reset so I created a if bugReports: statement that runs if bugReports is not empty and does not run if it is empty and moved the code responsible for asking you if you want to reset the bugReports.json file into it.
 
-I realized after completing the project while Editing the README.md that I have not yet created code that runs if the user enters a incorrect title when typing change status, so I added a if else statment that will not run the code that changes the status of a non-existant bug report if matching_bug is not a true statement.
+I realized after completing the project while Editing the README.md that I have not yet created code that runs if the user enters a incorrect title when typing change status, so I added a if else statement that will not run the code that changes the status of a non-existent bug report if matching_bug is not a true statement.
